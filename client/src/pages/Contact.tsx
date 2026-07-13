@@ -4,11 +4,47 @@ import { trpc } from '@/lib/trpc';
 import { toast } from 'sonner';
 import { openWhatsAppChats } from '@/lib/whatsapp';
 
+const COMPANY_CONTACT_EMAIL = 'aspraconsultancy@gmail.com';
+
+type ContactFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  inquiryType: string;
+};
+
+async function sendInquiryEmail(input: ContactFormData) {
+  const response = await fetch(`https://formsubmit.co/ajax/${COMPANY_CONTACT_EMAIL}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      _subject: `New Inquiry: ${input.subject}`,
+      _replyto: input.email,
+      _captcha: 'false',
+      _template: 'table',
+      name: input.name,
+      email: input.email,
+      phone: input.phone || 'Not provided',
+      inquiryType: input.inquiryType || 'general',
+      message: input.message,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Email service returned ${response.status}`);
+  }
+}
+
 export default function Contact() {
   const queryParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
   const initialJobId = queryParams.get('jobId');
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     phone: '',
@@ -16,22 +52,23 @@ export default function Contact() {
     message: '',
     inquiryType: initialJobId ? 'job' : 'general',
   });
+  const [isFallbackSending, setIsFallbackSending] = useState(false);
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      subject: initialJobId ? `Job Application for Job ID: ${initialJobId}` : '',
+      message: '',
+      inquiryType: initialJobId ? 'job' : 'general',
+    });
+  };
 
   const createInquiry = trpc.inquiries.create.useMutation({
     onSuccess: () => {
       toast.success('Thank you! We will get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: initialJobId ? `Job Application for Job ID: ${initialJobId}` : '',
-        message: '',
-        inquiryType: initialJobId ? 'job' : 'general',
-      });
-    },
-    onError: (error) => {
-      toast.error('Failed to submit form. Please try again.');
-      console.error(error);
+      resetForm();
     },
   });
 
@@ -43,14 +80,30 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       toast.error('Please fill in all required fields.');
       return;
     }
 
-    createInquiry.mutate(formData);
+    try {
+      await createInquiry.mutateAsync(formData);
+    } catch (apiError) {
+      console.warn('[Contact Form] Backend submission failed, trying direct email fallback.', apiError);
+
+      try {
+        setIsFallbackSending(true);
+        await sendInquiryEmail(formData);
+        toast.success('Thank you! We will get back to you soon.');
+        resetForm();
+      } catch (emailError) {
+        toast.error('Failed to submit form. Please try again.');
+        console.error('[Contact Form] Email fallback failed:', emailError);
+      } finally {
+        setIsFallbackSending(false);
+      }
+    }
   };
 
   const handleWhatsApp = () => {
@@ -165,10 +218,10 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={createInquiry.isPending}
+                  disabled={createInquiry.isPending || isFallbackSending}
                   className="cta-button-lg w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {createInquiry.isPending ? 'Sending...' : 'Send Message'}
+                  {createInquiry.isPending || isFallbackSending ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </motion.div>

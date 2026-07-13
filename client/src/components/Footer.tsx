@@ -42,7 +42,7 @@ export default function Footer() {
             <ul className="space-y-2 text-white/60 text-sm">
               <li>Email: aspraconsultancy@gmail.com</li>
               <li>Phone: +91 90254 91773</li>
-              <li>Phone: +91 8015700576</li>
+              <li>Phone: +91 80157 00576</li>
               <li>Instagram: @aspra_overseas</li>
               <li>Facebook: @aspra_overseas</li>
               <li>Address: Saibaba Colony, Cbe - 38</li>
