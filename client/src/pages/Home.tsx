@@ -51,14 +51,14 @@ export default function Home() {
     },
     {
       id: 2,
-      name: "Ahmed Khan",
+      name: "Sandra",
       title: "Architect in Dubai",
       content: "I found my dream job in Dubai thanks to the team at Aspra. They connected me with top firms and handled all the documentation smoothly.",
       rating: 5,
     },
     {
       id: 3,
-      name: "Elena Rodriguez",
+      name: "Maria",
       title: "Medical Officer in Mauritius",
       content: "The bulk hiring opportunity in Mauritius was a great start for my international career. The benefits package is exactly as promised.",
       rating: 5,
@@ -90,7 +90,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden -mt-16 lg:-mt-20">
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden md:block"
           style={{
             backgroundImage: "url('/home.png')",
             backgroundSize: 'cover',
@@ -138,7 +138,7 @@ export default function Home() {
             >
               Build Your Global Future
               <br />
-              with <span className="text-[#E84A8A]">Aspra Overseas</span>
+              with <span className="bg-gradient-to-r from-[#FF5FA2] via-[#D946EF] to-[#7C3AED] bg-clip-text text-transparent">Aspra Overseas</span>
             </motion.h1>
 
             <motion.p
@@ -150,10 +150,10 @@ export default function Home() {
 
             <motion.div
               variants={itemVariants}
-              className="mb-8 flex flex-col gap-3 sm:flex-row"
+              className="mb-8 flex flex-row items-center justify-center gap-2 sm:gap-3"
             >
-              <Link href="/jobs" className="cta-button-lg">Explore Jobs</Link>
-              <Link href="/study-abroad" className="cta-button-lg">Study Abroad</Link>
+              <Link href="/jobs" className="cta-button-lg inline-flex items-center justify-center px-4 py-2 text-sm md:px-8 md:py-4 md:text-lg">Explore Jobs</Link>
+              <Link href="/study-abroad" className="cta-button-lg inline-flex items-center justify-center px-4 py-2 text-sm md:px-8 md:py-4 md:text-lg">Study Abroad</Link>
             </motion.div>
 
             <motion.div

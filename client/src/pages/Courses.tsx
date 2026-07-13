@@ -43,16 +43,16 @@ export default function Courses() {
   return (
     <div className="min-h-screen bg-gradient-dark pt-24">
       {/* Page Header */}
-      <section className="relative min-h-[80vh] overflow-hidden py-16 md:min-h-[90vh] md:py-20">
+      <section className="relative min-h-[40vh] overflow-hidden py-1 md:min-h-[90vh] md:py-20">
         <motion.div
           initial={{ opacity: 1, scale: 1.02 }}
           animate={{ opacity: 1, scale: [1, 1.02, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-[1] origin-center"
+          className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat scale-[1] origin-center md:block"
           style={{ backgroundImage: "linear-gradient(90deg, rgba(2, 11, 58, 0.82) 0%, rgba(2, 11, 58, 0.58) 42%, rgba(2, 11, 58, 0.18) 100%), url('/course.png')" }}
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.10),transparent_18%),radial-gradient(circle_at_top_right,_rgba(244,114,182,0.08),transparent_18%)]" />
-        <div className="container relative z-10 mx-auto flex min-h-[80vh] items-start pt-10 px-4 md:min-h-[90vh] md:pt-16">
+        <div className="container relative z-10 mx-auto flex min-h-[40vh] items-start pt-0 px-4 md:min-h-[90vh] md:pt-16">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function Courses() {
       </section>
 
       {/* Courses Grid */}
-      <section className="py-20 bg-gradient-to-b from-[#020A2E] to-[#1E3A8A]">
+      <section className="pt-0 pb-0 md:py-20 bg-gradient-to-b from-[#020A2E] to-[#1E3A8A]">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {courses.map((course, index) => (

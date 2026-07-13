@@ -270,7 +270,7 @@ export default function Jobs() {
                 <img
                   src="/jobs.png"
                   alt="Job opportunities illustration"
-                  className="relative z-10 h-64 w-full rounded-[30px] object-contain md:h-80 lg:h-[26rem]"
+                  className="relative z-10 hidden h-64 w-full rounded-[30px] object-contain md:block md:h-80 lg:h-[26rem]"
                 />
               </div>
             </motion.div>
