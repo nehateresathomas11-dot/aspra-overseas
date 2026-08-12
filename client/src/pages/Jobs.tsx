@@ -245,6 +245,45 @@ export default function Jobs() {
       benefits: "Medical provided, 8 Hours per day, Overtime Rewarded",
       category: "other",
     },
+    // Lithuania
+    {
+      id: 19,
+      title: "Furniture Warehouse",
+      company: "Aspra Partner - Lithuania",
+      salary: "₹1,30,000/-",
+      location: "Lithuania",
+      experience: "TRC Work Visa",
+      description: "Immediate hiring for furniture warehouse roles in Lithuania. Processing time is 3 months. Tickets & VFS extra. Limited vacancies available.",
+      requirements: "TRC Work Visa. Suitable candidates should be ready for immediate hiring and warehouse work in a modern working environment.",
+      benefits: "Stable European employment, safe and peaceful country, opportunity to build an international career, modern warehouse working environment, long-term career growth.",
+      category: "other",
+    },
+    // Maldives
+    {
+      id: 20,
+      title: "Teachers for Maldives",
+      company: "Ministry of Education Maldives",
+      salary: "80K to 1L",
+      location: "Maldives",
+      experience: "Subject degree with teaching experience",
+      description: "Openings for Ministry of Education Maldives for A Level (Higher Secondary) and O Level teachers. Subjects include Accounting, Art & Design, Hospitality, Business Studies, Creative Arts, Economics, English, SEN (Special Needs), Chemistry, Physical Education, Mathematics, Science, Travel & Tourism, Mechanics, Statistics, Psychology, and Biology.",
+      requirements: "Subject degree with teaching experience. B.Ed preferred. Documents required: updated resume, passport front and address page, convocation scan of degree, separate photo of convocation degree and passport page, white background photo.",
+      benefits: "Medical insurance, vacations with salary, free air ticket once a year, free education for children, working hours: 8 hours every day, 6.5 days per week.",
+      category: "other",
+    },
+    // Cyprus
+    {
+      id: 21,
+      title: "Warehouse Operator / Warehouse Assistant",
+      company: "Eurofreight Logistics LTD",
+      salary: "€1,100 – €1,400 per month",
+      location: "Larnaca, Cyprus",
+      experience: "Degree graduates",
+      description: "Warehouse Operator and Warehouse Assistant roles with Eurofreight Logistics LTD in Larnaca, Cyprus. Responsibilities include receiving, inspecting, and storing products, preparing customer orders, handling warehouse and order documentation, and coordinating and communicating with customers.",
+      requirements: "Degree graduates with intermediate written and spoken English, clean criminal record, and basic computer knowledge. Preferred qualifications: experience using barcode scanners, experience in the 3PL (Third-Party Logistics) sector, and forklift driving licence. Working hours: Monday - Friday, 08:00 AM - 05:00 PM.",
+      benefits: "Shared accommodation provided, modern and well-maintained equipment, professional growth and career development opportunities, safe and supportive working environment, competitive salary, and a company that values reliability, professionalism, and teamwork.",
+      category: "other",
+    },
   ];
 
   const filteredJobs = jobs.filter(job => 
